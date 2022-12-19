@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "plan-api",
+			"path": "../plan-api"
+		},
+		{
+			"name": "eureka_server",
+			"path": "../eureka_server"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}
