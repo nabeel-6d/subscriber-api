@@ -5,12 +5,15 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+
+// import org.hibernate.annotations.OnDelete;
+// import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
@@ -22,11 +25,11 @@ public class Subscriber {
     private String name;
     private String mobileNumber;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name ="Subscriber_and_its_plans",joinColumns = @JoinColumn(name="plan_id",referencedColumnName = "subscriber_id"))
-    private Set<Plan> plan_ids=new LinkedHashSet<Plan>();
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false)
+    private Set<Subscriber_Plans> plan_ids=new LinkedHashSet<Subscriber_Plans>();
 
-    public void setPlan_ids(Set<Plan> plan_ids) {
+    public void setPlan_ids(Set<Subscriber_Plans> plan_ids) {
         this.plan_ids = plan_ids;
     }
 
@@ -79,28 +82,30 @@ public class Subscriber {
     }
 
 
-    public Set<Plan> getPlan_ids() {
+    public Set<Subscriber_Plans> getPlan_ids() {
         return plan_ids;
     }
 
 
-    public void setPlan(Plan plan_id) {
+    public void setPlan(Subscriber_Plans plan_id) {
     if(plan_id == null)
         throw new IllegalArgumentException("plan in set plan subscr is null");
     this.plan_ids.add(plan_id);
     }
 
     
-    // private Plan a=null;
-    // public void removePlan(Plan theplan){
-        
-    //     this.plan_ids.forEach(plan -> {
-    //         if(plan.getPlan_id()==theplan.getPlan_id())
-    //             a=plan;
-    //     });
-    //     if(a!=null)
-    //         this.plan_ids.remove(a);
-    // }
+    public void removePlan(Subscriber_Plans theplan){
+        Set<Subscriber_Plans> newdata=new LinkedHashSet<Subscriber_Plans>();
+        System.out.println("in subscr remove plan()");
+        for(Subscriber_Plans p:this.plan_ids){
+            if(p!=null && p.getPlan_id()==theplan.getPlan_id())
+                continue;
+            else
+                newdata.add(p);
+        }
+        this.plan_ids.clear();
+        this.setPlan_ids(newdata); 
+    }
 
     @Override
     public int hashCode() {
