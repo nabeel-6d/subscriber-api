@@ -86,7 +86,6 @@ public class SubscriberService {
        return false;
     }
 
-   
     public boolean removeExistingPlanForASubscriber(int subscr_id,int plan_id){
         Subscriber s = subrepo.findById(subscr_id).get();
         Subscriber_Plans proto=null;
