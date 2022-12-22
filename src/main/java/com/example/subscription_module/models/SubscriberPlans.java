@@ -1,4 +1,4 @@
-package com.example.subscription_module.subscriberapi_main;
+package com.example.subscription_module.models;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Subscriber_Plans {
+public class SubscriberPlans {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public class Subscriber_Plans {
     private String name;
     private Date validity;
 
-    public Subscriber_Plans() {
+    public SubscriberPlans() {
         System.out.println("in plan no-arg cnstr");
     }
     
-    public Subscriber_Plans(String name, Date validity) {
+    public SubscriberPlans(String name, Date validity) {
         if(name == null || name.isEmpty() || name.isBlank())
             throw new IllegalArgumentException("Plan_Prototype name is either null or empty or blank------->");
         if(validity==null || validity.before(new Date()))
@@ -81,7 +81,7 @@ public class Subscriber_Plans {
             return false;
         if (getClass() != obj.getClass())
             return false;
-            Subscriber_Plans other = (Subscriber_Plans) obj;
+            SubscriberPlans other = (SubscriberPlans) obj;
         if (plan_id != other.plan_id)
             return false;
         if (name == null) {

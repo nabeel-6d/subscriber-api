@@ -1,4 +1,4 @@
-package com.example.subscription_module.subscriberapi_main;
+package com.example.subscription_module.models;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -27,9 +27,9 @@ public class Subscriber {
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
-    private Set<Subscriber_Plans> plan_ids=new LinkedHashSet<Subscriber_Plans>();
+    private Set<SubscriberPlans> plan_ids=new LinkedHashSet<SubscriberPlans>();
 
-    public void setPlan_ids(Set<Subscriber_Plans> plan_ids) {
+    public void setPlan_ids(Set<SubscriberPlans> plan_ids) {
         this.plan_ids = plan_ids;
     }
 
@@ -82,22 +82,22 @@ public class Subscriber {
     }
 
 
-    public Set<Subscriber_Plans> getPlan_ids() {
+    public Set<SubscriberPlans> getPlan_ids() {
         return plan_ids;
     }
 
 
-    public void setPlan(Subscriber_Plans plan_id) {
+    public void setPlan(SubscriberPlans plan_id) {
     if(plan_id == null)
         throw new IllegalArgumentException("plan in set plan subscr is null");
     this.plan_ids.add(plan_id);
     }
 
     
-    public void removePlan(Subscriber_Plans theplan){
-        Set<Subscriber_Plans> newdata=new LinkedHashSet<Subscriber_Plans>();
+    public void removePlan(SubscriberPlans theplan){
+        Set<SubscriberPlans> newdata=new LinkedHashSet<SubscriberPlans>();
         System.out.println("in subscr remove plan()");
-        for(Subscriber_Plans p:this.plan_ids){
+        for(SubscriberPlans p:this.plan_ids){
             if(p!=null && p.getPlan_id()==theplan.getPlan_id())
                 continue;
             else
