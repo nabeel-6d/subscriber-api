@@ -1,4 +1,4 @@
-package com.example.subscription_module.controllers;
+package com.example.subscription_module.subscriberapi_main;
 
 import java.util.List;
 
@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.subscription_module.models.Subscriber;
-import com.example.subscription_module.services.SubscriberService;
 
 @RestController
 @RequestMapping("/subscriber")

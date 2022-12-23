@@ -1,4 +1,4 @@
-package com.example.subscription_module.services;
+package com.example.subscription_module.subscriberapi_main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import com.example.subscription_module.models.Subscriber;
-import com.example.subscription_module.models.SubscriberPlans;
-import com.example.subscription_module.repositories.SubscriberRepository;
-import com.example.subscription_module.repositories.SubscribersPlanRepository;
 
 
 @Service

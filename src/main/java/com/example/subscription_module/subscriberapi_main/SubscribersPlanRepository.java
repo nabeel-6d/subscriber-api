@@ -1,8 +1,6 @@
-package com.example.subscription_module.repositories;
+package com.example.subscription_module.subscriberapi_main;
 
 import org.springframework.data.repository.CrudRepository;
-
-import com.example.subscription_module.models.SubscriberPlans;
 
 public interface SubscribersPlanRepository extends CrudRepository<SubscriberPlans,Integer>{
 }

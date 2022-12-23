@@ -1,4 +1,4 @@
-package com.example.subscription_module.models;
+package com.example.subscription_module.subscriberapi_main;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
