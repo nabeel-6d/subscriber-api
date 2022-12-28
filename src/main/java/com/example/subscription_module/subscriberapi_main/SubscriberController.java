@@ -1,6 +1,6 @@
 package com.example.subscription_module.subscriberapi_main;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,9 +38,11 @@ public class SubscriberController {
     }
 
     @GetMapping("/getall")
-    public List<Subscriber> getALLSubscribers(){
+    public Collection<Subscriber> getALLSubscribers(){
         return subService.retriveAllSubscribers();
     }
+
+    /* -------------------------- code involving plans -------------------------- */
 
     @PostMapping("/{subscr_id}/addplan/{plan_id}")
     public void addPlanForASubscriber(@RequestBody Subscriber s,@PathVariable int subscr_id,@PathVariable int plan_id){
@@ -51,8 +53,45 @@ public class SubscriberController {
     public void removePlanForSubscriber(@PathVariable int subscr_id,@PathVariable int plan_id){
         subService.removeExistingPlanForASubscriber(subscr_id, plan_id);
     }
-    // @GetMapping("/get/{id}")
-    // public Subscriber getASubscriber(@PathVariable int id){
-        
-    // }
+    
+  /* -------------------------- code involving search criteria by address type -------------------------- */
+
+    @GetMapping("/getall/bymob/{mob}")
+    public Collection<Subscriber> getSubscribersByMobileNumber(@PathVariable String mob){
+        return subService.allSubscribersByMobileNumber(mob);
+    }
+
+    @GetMapping("/getall/byemail/{email}")
+    public Collection<Subscriber> getSubscribersByEmail(@PathVariable String email){
+        return subService.allSubscribersByEmail(email);
+    }
+
+    @GetMapping("/getall/address/houseno/{housno}")
+    public Collection<Subscriber> getSubscribersByAddressHouseNo(@PathVariable String housno){
+        return subService.allSubscribersByAddressHouseNo(housno);
+    }
+
+    
+    @GetMapping("/getall/address/streetname/{streetname}")
+    public Collection<Subscriber> getSubscribersByAddressSteetName(@PathVariable String streetname){
+        return subService.allSubscribersByAddressStreetName(streetname);
+    }
+
+    
+    @GetMapping("/getall/address/city/{city}")
+    public Collection<Subscriber> getSubscribersByAddressCity(@PathVariable String city){
+        return subService.allSubscribersByAddressCity(city);
+    }
+
+    
+    @GetMapping("/getall/address/zipcode/{zipcode}")
+    public Collection<Subscriber> getSubscribersByAddressZipcode(@PathVariable String zipcode){
+        return subService.allSubscribersByAddressZipCode(zipcode);
+    }
+
+    @GetMapping("/getall/address/country/{countryname}")
+    public Collection<Subscriber> getSubscribersByAddressCountry(@PathVariable String countryname){
+        return subService.allSubscribersByAddressCountry(countryname);
+    }
+
 }

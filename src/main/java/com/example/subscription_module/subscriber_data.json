@@ -1,0 +1,106 @@
+ [   {
+        "subscriber_id": 5,
+        "name": "kunwarPratap",
+        "mobileNumber": "080-2158269",
+        "email": "kunwarPratap@gmail.com",
+        "primarySpokenLanguage": "Hindi",
+        "address": {
+            "houseNo": "12#8",
+            "streetname": "palace road",
+            "city": "bangalore",
+            "zipcode": "126589",
+            "country": "INDIA"
+        }
+       
+    },
+    {
+        "subscriber_id": 7,
+        "name": "mahajvj",
+        "mobileNumber": "080-2151125",
+        "email": "maharana@gmail.com",
+        "primarySpokenLanguage": "Hindi",
+        "address": {
+            "houseNo": "abc",
+            "streetname": "palace road",
+            "city": "bangalore",
+            "zipcode": "189564",
+            "country": "INDIA"
+        }
+       
+    },
+    {
+        "subscriber_id": 6,
+        "name": "maharana",
+        "mobileNumber": "080-2151125",
+        "email": "maharana@gmail.com",
+        "primarySpokenLanguage": "Hindi",
+        "address": {
+            "houseNo": "abc",
+            "streetname": "palace road",
+            "city": "bangalore",
+            "zipcode": "189564",
+            "country": "INDIA"
+        }
+       
+    },
+    {
+        "subscriber_id": 3,
+        "name": "mark",
+        "mobileNumber": "809487506",
+        "email": "mark@gmail.com",
+        "primarySpokenLanguage": "French",
+        "address": {
+            "houseNo": "33/4",
+            "streetname": "william street",
+            "city": "portugal",
+            "zipcode": "2546",
+            "country": "Spain"
+        }
+       
+    },
+    {
+        "subscriber_id": 1,
+        "name": "mcfany",
+        "mobileNumber": "9965872105",
+        "email": "mcfany@gmail.com",
+        "primarySpokenLanguage": "English",
+        "address": {
+            "houseNo": "#728",
+            "streetname": "5th main",
+            "city": "chennai",
+            "zipcode": "56782",
+            "country": "INDIA"
+        }
+       
+    },
+    {
+        "subscriber_id": 2,
+        "name": "nabeel",
+        "mobileNumber": "8095475006",
+        "email": "nabeel@gmail.com",
+        "primarySpokenLanguage": "English",
+        "address": {
+            "houseNo": "#384",
+            "streetname": "1st main",
+            "city": "bangalore",
+            "zipcode": "560032",
+            "country": "INDIA"
+        }
+       
+    },
+    {
+        "subscriber_id": 4,
+        "name": "philliphe",
+        "mobileNumber": "4589721652",
+        "email": "philliphe@gmail.com",
+        "primarySpokenLanguage": "French",
+        "address": {
+            "houseNo": "33/4",
+            "streetname": "martha street",
+            "city": "portugal",
+            "zipcode": "2511",
+            "country": "Spain"
+        }
+       
+    }
+ ]

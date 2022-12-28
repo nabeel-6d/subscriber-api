@@ -11,22 +11,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 // import org.hibernate.annotations.OnDelete;
 // import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
-public class Subscriber {
+public class Subscriber implements Comparable<Subscriber>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int subscriber_id; //auto-generated so no setter or in-param cnstr
     private String name;
     private String mobileNumber;
+    private String email;
+    private String primarySpokenLanguage;
+    
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_sl_no",nullable = false)
+    private Address address;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name ="subscriber_plan_id",nullable = false,columnDefinition = "int DEFAULT 0")
     private Set<SubscriberPlans> plan_ids=new LinkedHashSet<SubscriberPlans>();
 
     public void setPlan_ids(Set<SubscriberPlans> plan_ids) {
@@ -38,16 +45,26 @@ public class Subscriber {
     }
 
 
-    public Subscriber(String name, String mobileNumber) {
+    public Subscriber(String name, String mobileNumber,String email,String primarySpokenLanguage,Address address) {
         if(name == null || name.isEmpty() || name.isBlank())
             throw new IllegalArgumentException("name of subsriber is either null or empty or blank------->");
         if(mobileNumber == null || mobileNumber.isEmpty() || mobileNumber.isBlank())
             throw new IllegalArgumentException("mobileNumber of subsriber is either null or empty or blank------->");
+        if(email == null || email.isEmpty() || email.isBlank())
+            throw new IllegalArgumentException("email of subsriber is either null or empty or blank------->");
+        if(address == null )
+            throw new IllegalArgumentException("address of subsriber is null ------->");
+        if(primarySpokenLanguage == null || primarySpokenLanguage.isEmpty() || primarySpokenLanguage.isBlank())
+            throw new IllegalArgumentException("primarySpokenLanguage of subsriber is either null or empty or blank------->");
+        
         this.name = name;
         this.mobileNumber = mobileNumber;
+        this.email=email;
+        this.primarySpokenLanguage=primarySpokenLanguage;
+        this.address=address;
         System.out.println("in subscriber param cnstr");
     }
-
+    
     public int getSubscriber_id() {
         System.out.println("in subscriber sub_id getter");
         return subscriber_id;
@@ -107,6 +124,43 @@ public class Subscriber {
         this.setPlan_ids(newdata); 
     }
 
+    public Address getAddress() {
+        System.out.println("in subscriber address getter");
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        if(address == null)
+            throw new IllegalArgumentException("address is not valid");
+        this.address = address;
+    }
+    
+    public void setSubscriber_id(int subscriber_id) {
+        this.subscriber_id = subscriber_id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        if(email == null || email.isEmpty())
+            throw new IllegalArgumentException("email is invalid");
+        this.email = email;
+    }
+
+   
+    public String getPrimarySpokenLanguage() {
+        return primarySpokenLanguage;
+    }
+
+    public void setPrimarySpokenLanguage(String primarySpokenLanguage) {
+        if(primarySpokenLanguage == null || primarySpokenLanguage.isEmpty() || primarySpokenLanguage.isBlank())
+            throw new IllegalArgumentException("primarySpokenLanguage of subsriber is either null or empty or blank------->");
+    
+        this.primarySpokenLanguage = primarySpokenLanguage;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -114,10 +168,12 @@ public class Subscriber {
         result = prime * result + subscriber_id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((mobileNumber == null) ? 0 : mobileNumber.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((primarySpokenLanguage == null) ? 0 : primarySpokenLanguage.hashCode());
+        result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + ((plan_ids == null) ? 0 : plan_ids.hashCode());
         return result;
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -140,6 +196,21 @@ public class Subscriber {
                 return false;
         } else if (!mobileNumber.equals(other.mobileNumber))
             return false;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (primarySpokenLanguage == null) {
+            if (other.primarySpokenLanguage != null)
+                return false;
+        } else if (!primarySpokenLanguage.equals(other.primarySpokenLanguage))
+            return false;
+        if (address == null) {
+            if (other.address != null)
+                return false;
+        } else if (!address.equals(other.address))
+            return false;
         if (plan_ids == null) {
             if (other.plan_ids != null)
                 return false;
@@ -148,12 +219,20 @@ public class Subscriber {
         return true;
     }
 
-
     @Override
-    public String toString() {
-        return "Subscriber [subscriber_id=" + subscriber_id + ", name=" + name + ", mobileNumber=" + mobileNumber
-                + ", plan_ids=" + plan_ids + "]";
+    public int compareTo(Subscriber subscriber) {
+        if(subscriber!=null){
+            return (this.name+this.mobileNumber+this.email+this.address.toString()).compareTo(subscriber.getName()+subscriber.getMobileNumber()+subscriber.getEmail()+subscriber.getAddress().toString()); 
+        }
+        return 0;
     }
 
     
+    @Override
+    public String toString() {
+        return "Subscriber [subscriber_id=" + subscriber_id + ", name=" + name + ", mobileNumber=" + mobileNumber
+                + ", email=" + email + ", primarySpokenLanguage=" + primarySpokenLanguage + ", address=" + address
+                + ", plan_ids=" + plan_ids + "]";
+    }
+
 }
