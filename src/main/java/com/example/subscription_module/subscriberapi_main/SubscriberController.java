@@ -42,11 +42,15 @@ public class SubscriberController {
         return subService.retriveAllSubscribers();
     }
 
+    @GetMapping("/getall/name/{name}")
+    public Collection<Subscriber> getSubscriberByName(@PathVariable String name){
+        return subService.allSubscribersByName(name);
+    }
     /* -------------------------- code involving plans -------------------------- */
 
     @PostMapping("/{subscr_id}/addplan/{plan_id}")
-    public void addPlanForASubscriber(@RequestBody Subscriber s,@PathVariable int subscr_id,@PathVariable int plan_id){
-        subService.addExistingPlanForASubscriber(s, subscr_id, plan_id);
+    public void addPlanForASubscriber(@PathVariable int subscr_id,@PathVariable int plan_id){
+        subService.addExistingPlanForASubscriber(subscr_id, plan_id);
     }
 
     @DeleteMapping("/{subscr_id}/deleteplan/{plan_id}")
@@ -94,4 +98,13 @@ public class SubscriberController {
         return subService.allSubscribersByAddressCountry(countryname);
     }
 
+    @GetMapping("/getall/country/{countryname}/language/{language}")
+    public Collection<Subscriber> getSubscriberByCountryAndLanguage(@PathVariable String countryname,@PathVariable String language){
+        return subService.allSubscribersByAddressCountryAndLanguage(countryname, language);
+    }
+
+    @GetMapping("/getall/country/{countryname}/name/{subscribername}")
+    public Collection<Subscriber> getSubscriberByCountryAndName(@PathVariable String countryname,@PathVariable String subscribername){
+        return subService.allSubscribersByAddressCountryAndSubscriberName(countryname, subscribername);
+    }
 }

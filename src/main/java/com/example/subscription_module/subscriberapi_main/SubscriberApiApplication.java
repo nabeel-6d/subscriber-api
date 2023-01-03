@@ -6,6 +6,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
@@ -22,4 +24,8 @@ public class SubscriberApiApplication{
 		return new RestTemplateBuilder().build();
 	}
 
+	@Bean
+	public PasswordEncoder getPasswordEncoder(){
+		return NoOpPasswordEncoder.getInstance();
+	}
 }
